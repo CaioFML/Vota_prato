@@ -1,0 +1,37 @@
+<%= form_with(model: qualificacao, local: true) do |form| %>
+  <% if qualificacao.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(qualificacao.errors.count, "error") %> prohibited this qualificacao from being saved:</h2>
+
+      <ul>
+      <% qualificacao.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :cliente_id %>
+    <%= f.collection_select(:cliente_id, Cliente.order(:nome), :id, :nome, :prompt => true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :restaurante_id %>
+    <%= f.collection_select(:restaurante_id, Restaurante.order(:nome), :id, :nome, :prompt => true) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :nota %>
+    <%= form.text_field :nota %>
+  </div>
+
+  <div class="field">
+    <%= form.label :valor_gasto %>
+    <%= form.text_field :valor_gasto %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

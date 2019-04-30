@@ -1,0 +1,25 @@
+<% if @restaurante.errors.any? %>
+<ul>
+    <% @restaurante.errors.full_messages.each do |msg| %>
+    <li>
+        <%= msg %>
+    </li>
+    <% end %>
+</ul>
+<% end %>
+
+<%= form_for @restaurante do |f| %>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="form-group">
+            Nome: <%= f.text_field :nome, class:"form-control" %>
+            <br/>
+            Endereço: <%= f.text_field :endereco, class:"form-control" %>
+            <br/>
+            Especialidade: <%= f.text_field :especialidade, class:"form-control" %>
+            <br/>
+            <%= f.submit texto_da_acao, class:"btn btn-default" %>
+        </div>
+    </div>
+</div>
+<% end %>
