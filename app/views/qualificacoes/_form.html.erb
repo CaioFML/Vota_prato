@@ -1,5 +1,5 @@
-<%= form_with(model: qualificacao, local: true) do |form| %>
-  <% if qualificacao.errors.any? %>
+<%= form_with(model: @qualificacao, local: true) do |form| %>
+  <% if @qualificacao.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(qualificacao.errors.count, "error") %> prohibited this qualificacao from being saved:</h2>
 
@@ -12,13 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :cliente_id %>
-    <%= f.collection_select(:cliente_id, Cliente.order(:nome), :id, :nome, :prompt => true) %>
+    <% if @qualificacao.cliente %>
+    <%= form.hidden_field 'cliente_id' %>
+    <% else %>
+    <p><%= form.label :cliente_id %><br />
+    <%= form.collection_select(:cliente_id, @clientes, :id, :nome, :prompt => true) %></p>
+    <% end %>
   </div>
 
   <div class="field">
-    <%= form.label :restaurante_id %>
-    <%= f.collection_select(:restaurante_id, Restaurante.order(:nome), :id, :nome, :prompt => true) %>
+    <% if @qualificacao.restaurante %>
+    <%= form.hidden_field 'restaurante_id' %>
+    <% else %>
+    <p><%= form.label :restaurante_id %><br />
+    <%= form.collection_select(:restaurante_id, @restaurantes, :id, :nome, :prompt => true) %></p>
+    <% end %>
   </div>
 
   <div class="field">
