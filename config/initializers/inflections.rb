@@ -1,8 +1,9 @@
+# frozen_string_literal: true
+
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'receita', 'receitas'
   inflect.irregular 'qualificacao', 'qualificacoes'
 end
-
 
 # Be sure to restart your server when you modify this file.
 

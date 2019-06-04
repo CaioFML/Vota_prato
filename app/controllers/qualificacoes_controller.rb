@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class QualificacoesController < ApplicationController
-  before_action :set_qualificacao, only: [:show, :edit, :update, :destroy]
+  before_action :set_qualificacao, only: %i[show edit update destroy]
 
   # GET /qualificacoes
   # GET /qualificacoes.json
@@ -9,8 +11,7 @@ class QualificacoesController < ApplicationController
 
   # GET /qualificacoes/1
   # GET /qualificacoes/1.json
-  def show
-  end
+  def show; end
 
   # GET /qualificacoes/new
   def new
@@ -18,9 +19,7 @@ class QualificacoesController < ApplicationController
 
     @qualificacao = Qualificacao.new
 
-    if params[:cliente]
-      @qualificacao.cliente = Cliente.find(params[:cliente])
-    end
+    @qualificacao.cliente = Cliente.find(params[:cliente]) if params[:cliente]
 
     if params[:restaurante]
       @qualificacao.restaurante = Restaurante.find(params[:restaurante])
@@ -28,7 +27,7 @@ class QualificacoesController < ApplicationController
 
     respond_to do |format|
       format.html #  new.html.erb
-      format.xml { render :xml => @qualificacao }
+      format.xml { render xml: @qualificacao }
     end
   end
 
@@ -57,17 +56,17 @@ class QualificacoesController < ApplicationController
   # PATCH/PUT /qualificacoes/1
   # PATCH/PUT /qualificacoes/1.json
   def update
-  @qualificacao = Qualificacao.find(params[:id])
+    @qualificacao = Qualificacao.find(params[:id])
 
-  respond_to do |format|
-    if @qualificacao.update_attributes(qualificacao_params)
-      format.html { redirect_to @qualificacao, notice: 'Qualificacao foi atualizada com sucesso.' }
-      format.json { head :no_content }
-    else
-      preparar_form
-      format.html { render action: "edit" }
-      format.json { render json: @qualificacao.errors, status: :unprocessable_entity }
-      end
+    respond_to do |format|
+      if @qualificacao.update_attributes(qualificacao_params)
+        format.html { redirect_to @qualificacao, notice: 'Qualificacao foi atualizada com sucesso.' }
+        format.json { head :no_content }
+      else
+        preparar_form
+        format.html { render action: 'edit' }
+        format.json { render json: @qualificacao.errors, status: :unprocessable_entity }
+        end
     end
   end
 
@@ -82,19 +81,21 @@ class QualificacoesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_qualificacao
-      @qualificacao = Qualificacao.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def qualificacao_params
-      params.require(:qualificacao).permit(:cliente_id, :restaurante_id, :nota, :valor_gasto)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_qualificacao
+    @qualificacao = Qualificacao.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def qualificacao_params
+    params.require(:qualificacao).permit(:cliente_id, :restaurante_id, :nota, :valor_gasto)
+  end
 
   private
-    def preparar_form
-      @clientes = Cliente.order :nome
-      @restaurantes = Restaurante.order :nome
-  end
+
+  def preparar_form
+    @clientes = Cliente.order :nome
+    @restaurantes = Restaurante.order :nome
+end
 end

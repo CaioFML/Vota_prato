@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ClientesController < ApplicationController
-  before_action :set_cliente, only: [:show, :edit, :update, :destroy]
+  before_action :set_cliente, only: %i[show edit update destroy]
 
   # GET /clientes
   # GET /clientes.json
@@ -9,8 +11,7 @@ class ClientesController < ApplicationController
 
   # GET /clientes/1
   # GET /clientes/1.json
-  def show
-  end
+  def show; end
 
   # GET /clientes/new
   def new
@@ -18,8 +19,7 @@ class ClientesController < ApplicationController
   end
 
   # GET /clientes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /clientes
   # POST /clientes.json
@@ -62,13 +62,14 @@ class ClientesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cliente
-      @cliente = Cliente.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def cliente_params
-      params.require(:cliente).permit(:nome, :idade)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_cliente
+    @cliente = Cliente.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def cliente_params
+    params.require(:cliente).permit(:nome, :idade)
+  end
 end
