@@ -7,11 +7,17 @@ class ClientesController < ApplicationController
   # GET /clientes.json
   def index
     @clientes = Cliente.all
+
+    respond_with @clientes
   end
 
   # GET /clientes/1
   # GET /clientes/1.json
-  def show; end
+  def show
+    @cliente = Cliente.find(params[:id])
+
+    respond_with @cliente
+  end
 
   # GET /clientes/new
   def new
@@ -19,7 +25,9 @@ class ClientesController < ApplicationController
   end
 
   # GET /clientes/1/edit
-  def edit; end
+  def edit
+    @cliente = Cliente.find(params[:id])
+  end
 
   # POST /clientes
   # POST /clientes.json
