@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ComentariosController < ApplicationController
-  before_action :set_comentario, only: [:show, :edit, :update, :destroy]
+  before_action :set_comentario, only: %i[show edit update destroy]
 
   # GET /comentarios
   # GET /comentarios.json
@@ -9,8 +11,7 @@ class ComentariosController < ApplicationController
 
   # GET /comentarios/1
   # GET /comentarios/1.json
-  def show
-  end
+  def show; end
 
   # GET /comentarios/new
   def new
@@ -18,8 +19,7 @@ class ComentariosController < ApplicationController
   end
 
   # GET /comentarios/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /comentarios
   # POST /comentarios.json
@@ -62,13 +62,14 @@ class ComentariosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comentario
-      @comentario = Comentario.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def comentario_params
-      params.require(:comentario).permit(:conteudo, :comentavel_id, :comentavel_type)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comentario
+    @comentario = Comentario.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def comentario_params
+    params.require(:comentario).permit(:conteudo, :comentavel_id, :comentavel_type)
+  end
 end

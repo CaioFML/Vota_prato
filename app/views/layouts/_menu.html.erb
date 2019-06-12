@@ -1,0 +1,7 @@
+<ul>
+  <% opcoes.each do |controller_name| %>
+    <li>
+      <%= menu_item "#{controller_name}", controller: controller_name %>
+    </li>
+  <% end %>
+</ul>

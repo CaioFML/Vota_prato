@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class ComentariosControllerTest < ActionDispatch::IntegrationTest
@@ -5,17 +7,17 @@ class ComentariosControllerTest < ActionDispatch::IntegrationTest
     @comentario = comentarios(:one)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get comentarios_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_comentario_url
     assert_response :success
   end
 
-  test "should create comentario" do
+  test 'should create comentario' do
     assert_difference('Comentario.count') do
       post comentarios_url, params: { comentario: { comentavel_id: @comentario.comentavel_id, comentavel_type: @comentario.comentavel_type, conteudo: @comentario.conteudo } }
     end
@@ -23,22 +25,22 @@ class ComentariosControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to comentario_url(Comentario.last)
   end
 
-  test "should show comentario" do
+  test 'should show comentario' do
     get comentario_url(@comentario)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_comentario_url(@comentario)
     assert_response :success
   end
 
-  test "should update comentario" do
+  test 'should update comentario' do
     patch comentario_url(@comentario), params: { comentario: { comentavel_id: @comentario.comentavel_id, comentavel_type: @comentario.comentavel_type, conteudo: @comentario.conteudo } }
     assert_redirected_to comentario_url(@comentario)
   end
 
-  test "should destroy comentario" do
+  test 'should destroy comentario' do
     assert_difference('Comentario.count', -1) do
       delete comentario_url(@comentario)
     end

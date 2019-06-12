@@ -12,4 +12,6 @@ Rails.application.routes.draw do
     resources :qualificacoes
   end
   match 'inicio', controller: 'restaurantes', action: 'index', via: 'get'
+
+  root 'restaurantes#index'
 end

@@ -1,0 +1,7 @@
+<% content_for :css do %>
+  <link rel="stylesheet" href="/stylesheets/comentarios.css">
+<% end %>
+<p>
+   <%= comentario.conteudo %> -
+   <%= link_to '(remover)', comentario, method: :delete %>
+ </p>
