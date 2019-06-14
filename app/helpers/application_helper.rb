@@ -19,6 +19,6 @@ module ApplicationHelper
   end
 
   def menu_principal(controllers)
-    render partial: "menu", locals: { opcoes: controllers }
+    render partial: 'menu', locals: { opcoes: controllers }
   end
 end

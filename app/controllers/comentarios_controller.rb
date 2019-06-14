@@ -28,7 +28,7 @@ class ComentariosController < ApplicationController
 
     respond_to do |format|
       if @comentario.save
-        format.html { redirect_to @comentario, notice: 'Comentario was successfully created.' }
+        format.html { redirect_back(fallback_location: root_path) }
         format.json { render :show, status: :created, location: @comentario }
       else
         format.html { render :new }
@@ -55,21 +55,22 @@ class ComentariosController < ApplicationController
   # DELETE /comentarios/1.json
   def destroy
     @comentario.destroy
+
     respond_to do |format|
-      format.html { redirect_to comentarios_url, notice: 'Comentario was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      format.js { redirect_back(fallback_location: root_path) }
+		end
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_comentario
-    @comentario = Comentario.find(params[:id])
+    @comentario = Comentario.find params[:id]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def comentario_params
-    params.require(:comentario).permit(:conteudo, :comentavel_id, :comentavel_type)
+    params.require(:comentario).permit(:conteudo, :comentavel_id,
+      :comentavel_type)
   end
 end
