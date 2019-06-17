@@ -15,6 +15,11 @@
   <%= @restaurante.especialidade %>
 </p>
 
+<p>
+  <b>Foto:</b>
+  <%= image_tag @restaurante.foto.url(:thumb) %>
+</p>
+
 <b>Nota média: </b>
   <%= @restaurante.qualificacoes.average(:nota) %><br/>
 <b>Qualificações: </b>
